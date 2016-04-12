@@ -1,0 +1,35 @@
+{
+  "name": "el-input",
+  "version": "0.0.1",
+  "description": "A input component for Vue.",
+  "main": "build/",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "deploy-demo": "gh-pages -d example/dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/element-component/el-input.git"
+  },
+  "keywords": [
+    "element",
+    "vue",
+    "component",
+    "input"
+  ],
+  "author": "qingwei-li <qingwei.li@ele.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/element-component/el-input/issues"
+  },
+  "homepage": "https://github.com/element-component/el-input#readme",
+  "devDependencies": {
+    "gh-pages": "^0.11.0",
+    "highlight-loader": "^0.7.1",
+    "markdown-loader": "^0.1.7",
+    "vue-clickoutside": "0.0.4"
+  }
+}
