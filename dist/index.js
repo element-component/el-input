@@ -241,7 +241,7 @@
 /* 4 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=input :class=\"{\n    'input--disabled': disabled,\n    'input--active': show\n  }\" v-clickoutside=handleMouseLeave()> <span v-if=\"effect === 'special'\" :class=\"{ 'input__placeholder--enter': editing || model }\" class=input__placeholder @click=\"editing = true, $els.input.focus()\" v-text=placeholder> </span> <input v-el:input @blur=\"editing = false\" :type=\"type || effect\" v-model=model class=input__original :disabled=disabled :number=\"effect === 'number'\" :placeholder=\"effect === 'special' ? '' : placeholder\" @focus=\"editing = true, show = true\"> <ul v-show=show class=input__dropdown><li class=input__option :class=\"{'input__option--active': item === model}\" v-for=\"item in suggestion | filterBy model\" v-text=item @click=\"model = item, show = false\"></li></ul> </div>";
+	module.exports = "<div class=input :class=\"{ 'input--disabled': disabled, 'input--active': show }\" v-clickoutside=handleMouseLeave()> <span v-if=\"effect === 'special'\" :class=\"{ 'input__placeholder--enter': editing || model }\" class=input__placeholder @click=\"editing = true, $els.input.focus()\" v-text=placeholder> </span> <input v-el:input @blur=\"editing = false\" :type=\"type || effect\" v-model=model class=input__original :disabled=disabled :number=\"effect === 'number'\" :placeholder=\"effect === 'special' ? '' : placeholder\" @focus=\"editing = true, show = true\"> <ul v-show=show class=input__dropdown><li class=input__option :class=\"{'input__option--active': item === model}\" v-for=\"item in suggestion | filterBy model\" v-text=item @click=\"model = item, show = false\"></li></ul> </div>";
 
 /***/ },
 /* 5 */

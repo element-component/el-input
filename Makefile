@@ -1,16 +1,22 @@
+.PHONY: test clean
+
 clean:
 	rm -rf dist
 
+clean-demo:
+	rm -rf example/build
+
 build: clean
-	cooking build -c cooking.compo.js
+	element-toolbox build
 
 dev:
-	cooking watch -c cooking.demo.js
+	element-toolbox dev
 
-build-demo:
-	cooking build -c cooking.demo.js
+test:
+	element-toolbox test
 
-test: build
+test-single:
+	element-toolbox test --single-run
 
-deploy-demo: build-demo
-	npm deploy-demo
+deploy-demo: clean-demo
+	element-toolbox deploy-demo
