@@ -13,7 +13,6 @@ module.exports = {
     config.output.publicPath = process.env.NODE_ENV === 'production' ? 'el-input' : '';
     config.devtool = false;
 
-
     // cooking 0.4.0 将重构配置文件结构，这部分代码应该写到 element-toolbox 工具里，但是
     // 那样没法修改该配置文件，临时措施
     config.resolveLoader = config.resolveLoader || {};

@@ -9,6 +9,7 @@ module.exports = {
       'index': 'src/output.js',
       'index.min': 'src/output.js',
     };
+    config.output.libraryTarget = 'umd';
     config.devtool = false;
     config.output.filename = '[name].js';
     config.plugins = [
