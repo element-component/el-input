@@ -3,11 +3,9 @@
   "version": "0.0.1",
   "description": "A input component for Vue.",
   "main": "build/",
-  "directories": {
-    "example": "examples",
-    "test": "tests"
+  "scripts": {
+    "test": "make test-single"
   },
-  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/element-component/el-input.git"

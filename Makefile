@@ -15,6 +15,9 @@ dev:
 test:
 	element-toolbox test
 
+push:
+	element-toolbox push
+
 test-single:
 	element-toolbox test --single-run
 
