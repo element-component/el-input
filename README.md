@@ -12,7 +12,7 @@ npm i el-input -D
 # Usage
 ```javascript
   import vue from 'Vue'
-  import from 'el-input/style.css'
+  import 'el-input/style.css'
   import Compo from 'el-input'
 
   Vue.use(Compo)
