@@ -11,13 +11,20 @@ npm i el-input -D
 
 # Usage
 ```javascript
-  import vue from 'Vue'
-  import 'el-input/style.css'
-  import Compo from 'el-input'
+import Vue from 'vue'
+import ElInput from 'el-input'
+import 'el-input/style.css'
 
-  Vue.use(Compo)
-  // or
-  Vue.component('el-input', Compo)
+Vue.use(ElInput)
+```
+
+or
+
+```javascript
+import Vue from 'vue'
+import { ElInput } from 'el-input'
+
+Vue.component('el-input', ElInput)
 ```
 
 # Options

@@ -56,34 +56,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var compo = __webpack_require__(1);
+	var ElInput = __webpack_require__(4);
 
-	compo.install = function (Vue) {
-	  Vue.component('el-input', __webpack_require__(1));
+	module.exports = {
+	  ElInput: ElInput,
+	  install: function install(Vue) {
+	    Vue.component('el-input', ElInput);
+	  }
 	};
-
-	exports.default = compo;
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(3)
-	__vue_script__ = __webpack_require__(2)
-	__vue_template__ = __webpack_require__(4)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) {
-	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
-	}
-
-
-/***/ },
-/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -242,16 +225,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	// <script>
 
 /***/ },
-/* 3 */
+/* 2 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=input :class=\"{ 'input--disabled': disabled, 'input--active': show }\" v-clickoutside=handleMouseLeave()> <span v-if=\"effect === 'special'\" :class=\"{ 'input__placeholder--enter': editing || model }\" class=input__placeholder @click=\"editing = true, $els.input.focus()\" v-text=placeholder> </span> <input v-el:input @blur=\"editing = false\" :type=\"type || effect\" v-model=model class=input__original :disabled=disabled :number=\"effect === 'number'\" :placeholder=\"effect === 'special' ? '' : placeholder\" @focus=\"editing = true, show = true\"> <ul v-show=show class=input__dropdown><li class=input__option :class=\"{'input__option--active': item === model}\" v-for=\"item in suggestion | filterBy model\" v-text=item @click=\"model = item, show = false\"></li></ul> </div>";
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(2)
+	__vue_script__ = __webpack_require__(1)
+	__vue_template__ = __webpack_require__(3)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+
 
 /***/ },
 /* 5 */

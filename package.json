@@ -2,7 +2,7 @@
   "name": "el-input",
   "version": "0.0.0",
   "description": "A input component for Vue.",
-  "main": "build/",
+  "main": "dist/index.js",
   "scripts": {
     "test": "element-toolbox test --single-run"
   },

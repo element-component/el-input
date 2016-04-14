@@ -6,8 +6,8 @@ module.exports = {
     var webpack = provide.webpack;
 
     config.entry = {
-      'index': 'src/output.js',
-      'index.min': 'src/output.js',
+      'index': 'src/index.js',
+      'index.min': 'src/index.js',
     };
     config.output.libraryTarget = 'umd';
     config.devtool = false;

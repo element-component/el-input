@@ -25,14 +25,19 @@ module.exports = {
       loader: 'vue-html!highlight!markdown'
     });
 
-    config.externals = {
-      'vue': 'Vue'
-    };
+    if (process.argv[2] === 'build') {
+      template = 'example/index.html';
+      config.externals = {
+        'vue': 'Vue'
+      };
+    } else {
+      template = 'example/index.dev.html';
+    }
 
     config.plugins = (config.plugins || []).concat([
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'example/index.html',
+        template: template,
         inject: true
       })
     ]);

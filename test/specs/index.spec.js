@@ -1,9 +1,11 @@
 import Vue from 'vue'
-import ElCompo from './../../src/output.js'
+import ElInput from './../../src/index.js'
+
+Vue.use(ElInput);
 
 describe('el-input', () => {
   it('install', done => {
-    expect(ElCompo).to.respondTo('install')
+    expect(ElInput).to.respondTo('install')
     done()
   })
 
@@ -12,14 +14,13 @@ describe('el-input', () => {
   beforeEach(done => {
     vm = new Vue({
       template: `<div>
-                  <el-compo
+                  <el-input
                     v-ref:compo
                     :model.sync="model"
                     :cache="cache"
                     :suggestion="suggestion">
-                  </el-compo>
+                  </el-input>
                 </div>`,
-      components: { ElCompo },
       data () {
         return {
           model: '',

@@ -1,10 +1,11 @@
 <script>
+  import Vue from 'vue';
+  import ElInput from './../src/index';
+
+  Vue.use(ElInput);
+
   module.exports = {
     name: 'app',
-
-    components: {
-      ElInput: require('./../src/index')
-    },
 
     template: require('./demo.md'),
     data() {
