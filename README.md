@@ -13,7 +13,7 @@ npm i el-input -D
 ```javascript
 import Vue from 'vue'
 import ElInput from 'el-input'
-import 'el-input/dist/style.css'
+import 'element-theme-default/dist/input.css'
 
 Vue.use(ElInput)
 ```

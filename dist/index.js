@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
+		module.exports = factory(require("vue-clickoutside"));
 	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else {
-		var a = factory();
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
-})(this, function() {
+		define("ElSelect", ["vue-clickoutside"], factory);
+	else if(typeof exports === 'object')
+		exports["ElSelect"] = factory(require("vue-clickoutside"));
+	else
+		root["ElSelect"] = factory(root["vue-clickoutside"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -44,7 +44,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "/dist/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -56,17 +56,77 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var ElInput = __webpack_require__(4);
+	var ElInput = __webpack_require__(6);
 
 	module.exports = {
 	  ElInput: ElInput,
 	  install: function install(Vue) {
-	    Vue.component('el-input', ElInput);
+	    Vue.component(ElInput.name, ElInput);
 	  }
 	};
 
 /***/ },
 /* 1 */
+/***/ function(module, exports) {
+
+	module.exports = "<div block=element-core-input :class=\"{\n    'is-disabled': disabled,\n    'is-readonly': readonly,\n    'is-multiple': multiple\n  }\"> <template v-if=multiple> <el-core-tag @remove=tags.$remove(tag) v-for=\"tag in tags\" :data=tag> </el-core-tag> </template> <input elem=original v-el:input v-model=model :type=\"type || 'text'\" :disabled=disabled :readonly=readonly :placeholder=placeholder :number=\"type === 'number'\" @blur=\"$dispatch('e-blur')\" @focus=handleFocus @keydown.down.prevent=\"$dispatch('e-press-down')\" @keydown.up.prevent=\"$dispatch('e-press-up')\" @keyup.enter=\"$dispatch('e-press-enter')\" @keydown.8=handleDelete @keydown.esc=\"$dispatch('e-press-esc')\"> <slot name=icon></slot> </div>";
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	module.exports = "<button block=element-core-tag> <span v-text=data></span> <span elem=button v-if=_events.remove @click.stop=\"$dispatch('remove')\">&times;</span> </button>";
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = "<div block=element-input v-clickoutside=handleMouseLeave()> <span v-if=\"effect === 'special'\" :class=\"{ 'is-enter': editing || model }\" elem=placeholder @click=\"editing = true, $els.input.focus()\" v-text=placeholder> </span> <el-core-input :class=\"{\n      'is-active': show\n    }\" @e-blur=\"editing = false\" :type=\"type || effect\" :model.sync=model class=input__original :disabled=disabled :number=\"effect === 'number'\" :placeholder=\"effect === 'special' ? '' : placeholder\" @e-focus=\"editing = true, show = true\"> </el-core-input> <ul v-show=show block=element-dropdown><li block=element-option :class=\"{'is-selected': item === model}\" v-for=\"item in suggestion | filterBy model\" v-text=item @click=\"model = item, show = false\"></li></ul> </div>";
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(7)
+	__vue_template__ = __webpack_require__(1)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(8)
+	__vue_template__ = __webpack_require__(2)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__vue_script__ = __webpack_require__(9)
+	__vue_template__ = __webpack_require__(3)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+
+
+/***/ },
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -75,28 +135,86 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _vueClickoutside = __webpack_require__(5);
+	var _tag = __webpack_require__(5);
 
-	var _vueClickoutside2 = _interopRequireDefault(_vueClickoutside);
+	var _tag2 = _interopRequireDefault(_tag);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	/**
-	 * input
-	 * @module components/basic/input
-	 * @param {(string|number)} model - 绑定值
-	 * @param {string} [placeholder] - 输入框占位文本
-	 * @param {string[]} [suggestion] - 输入建议
-	 * @param {boolean} [disabled=false] - 是否禁用
-	 * @param {boolean} [cache=false] - 是否需要缓存
-	 * @param {string} [effect=text] - 输入框效果，允许 text, number, special
-	 * @example
-	 * ```html
-	 * <el-input :suggestion="['内容1', '内容2', '内容3']"></el-input>
-	 * ```
-	 */
+	exports.default = {
+	  name: 'ElCoreInput',
+
+	  components: {
+	    ElCoreTag: _tag2.default
+	  },
+
+	  props: {
+	    placeholder: String,
+	    disabled: Boolean,
+	    readonly: Boolean,
+	    multiple: Boolean,
+	    tags: Array,
+	    model: [String, null],
+	    type: String
+	  },
+
+	  methods: {
+	    handleFocus: function handleFocus() {
+	      if (!this.readonly) {
+	        this.$els.input.select();
+	      }
+	      this.$dispatch('e-focus');
+	    },
+	    handleDelete: function handleDelete() {
+	      if (this.model && this.model.trim().length !== 0) {
+	        return;
+	      }
+
+	      this.$dispatch('e-press-delete');
+	    }
+	  }
+	};
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+	  name: 'ElCoreTag',
+
+	  props: {
+	    data: [String, Number]
+	  }
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _vueClickoutside = __webpack_require__(10);
+
+	var _vueClickoutside2 = _interopRequireDefault(_vueClickoutside);
+
+	var _input = __webpack_require__(4);
+
+	var _input2 = _interopRequireDefault(_input);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	exports.default = {
 	  name: 'el-input',
+
+	  components: {
+	    ElCoreInput: _input2.default
+	  },
 
 	  props: {
 	    placeholder: String,
@@ -144,156 +262,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	};
-	// </script>
-	//
-	// <template>
-	//   <div
-	//     class="input"
-	//     :class="{
-	//       'input--disabled': disabled,
-	//       'input--active': show
-	//     }"
-	//     v-clickoutside="handleMouseLeave()">
-	//     <span
-	//       v-if="effect === 'special'"
-	//       :class="{ 'input__placeholder--enter': editing || model }"
-	//       class="input__placeholder"
-	//       @click="editing = true, $els.input.focus()"
-	//       v-text="placeholder">
-	//     </span>
-	//     <input
-	//       v-el:input
-	//       @blur="editing = false"
-	//       :type="type || effect"
-	//       v-model="model"
-	//       class="input__original"
-	//       :disabled="disabled"
-	//       :number="effect === 'number'"
-	//       :placeholder="effect === 'special' ? '' : placeholder"
-	//       @focus="editing = true, show = true">
-	//
-	//     <ul
-	//       v-show="show"
-	//       class="input__dropdown"><li
-	//         class="input__option"
-	//         :class="{'input__option--active': item === model}"
-	//         v-for="item in suggestion | filterBy model"
-	//         v-text="item"
-	//         @click="model = item, show = false"></li></ul>
-	//   </div>
-	// </template>
-
-	/* generated by vue-loader */
-	// <style lang="scss">
-	//   @import "~./style/_dropdown";
-	//   @import "~./style/_input";
-	//
-	//   .input {
-	//     @include input(
-	//       "input__original",
-	//       "input--active",
-	//       "input--disabled"
-	//     );
-	//   }
-	//
-	//   .input__placeholder {
-	//     left: 4px;
-	//     padding: 0 2px;
-	//     position: absolute;
-	//     top: 10px;
-	//     transition: all .2s ease-out;
-	//     font-size: 12px;
-	//   }
-	//
-	//   .input__dropdown {
-	//     @include dropdown();
-	//   }
-	//
-	//   .input__option {
-	//     @include dropdown-option('input__option--active');
-	//   }
-	//
-	//   .fadeInUp {
-	//     transition: all .2s ease-out;
-	//   }
-	//
-	//   .input__placeholder--enter {
-	//     top: -4px;
-	//   }
-	// </style>
-	//
-	// <script>
 
 /***/ },
-/* 2 */
+/* 10 */
 /***/ function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=input :class=\"{ 'input--disabled': disabled, 'input--active': show }\" v-clickoutside=handleMouseLeave()> <span v-if=\"effect === 'special'\" :class=\"{ 'input__placeholder--enter': editing || model }\" class=input__placeholder @click=\"editing = true, $els.input.focus()\" v-text=placeholder> </span> <input v-el:input @blur=\"editing = false\" :type=\"type || effect\" v-model=model class=input__original :disabled=disabled :number=\"effect === 'number'\" :placeholder=\"effect === 'special' ? '' : placeholder\" @focus=\"editing = true, show = true\"> <ul v-show=show class=input__dropdown><li class=input__option :class=\"{'input__option--active': item === model}\" v-for=\"item in suggestion | filterBy model\" v-text=item @click=\"model = item, show = false\"></li></ul> </div>";
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_script__, __vue_template__
-	__webpack_require__(2)
-	__vue_script__ = __webpack_require__(1)
-	__vue_template__ = __webpack_require__(3)
-	module.exports = __vue_script__ || {}
-	if (module.exports.__esModule) module.exports = module.exports.default
-	if (__vue_template__) {
-	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
-	}
-
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	(function (global, factory) {
-	   true ? module.exports = factory() :
-	  typeof define === 'function' && define.amd ? define(factory) :
-	  (global.VueClickOutside = factory());
-	}(this, function () { 'use strict';
-
-	  /**
-	   * v-clickoutside
-	   * @desc 点击元素外面才会触发的事件
-	   * @example
-	   * ```vue
-	   * <div v-element-clickoutside="show = false">
-	   * ```
-	   */
-	  var index = {
-	    bind: function bind() {
-	      var _this = this;
-
-	      this.handler = function (e) {
-	        if (_this.vm && !_this.el.contains(e.target)) {
-	          _this.vm.$eval(_this.expression);
-	        }
-	      };
-	      document.addEventListener('click', this.handler);
-	    },
-	    unbind: function unbind() {
-	      document.removeEventListener('click', this.handler);
-	    },
-	    install: function install(Vue) {
-	      Vue.directive('clickoutside', {
-	        bind: this.bind,
-	        unbind: this.unbind
-	      });
-	    }
-	  };
-
-	  return index;
-
-	}));
+	module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
 
 /***/ }
 /******/ ])

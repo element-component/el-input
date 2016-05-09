@@ -1,43 +1,6 @@
-<style lang="scss">
-  @import "~./style/_dropdown";
-  @import "~./style/_input";
-
-  .input {
-    @include input(
-      "input__original",
-      "input--active",
-      "input--disabled"
-    );
-  }
-
-  .input__placeholder {
-    left: 4px;
-    padding: 0 2px;
-    position: absolute;
-    top: 10px;
-    transition: all .2s ease-out;
-    font-size: 12px;
-  }
-
-  .input__dropdown {
-    @include dropdown();
-  }
-
-  .input__option {
-    @include dropdown-option('input__option--active');
-  }
-
-  .fadeInUp {
-    transition: all .2s ease-out;
-  }
-
-  .input__placeholder--enter {
-    top: -4px;
-  }
-</style>
-
 <script>
   import VueClickoutside from 'vue-clickoutside';
+  import ElCoreInput from './core/input';
 
   /**
    * input
@@ -55,6 +18,10 @@
    */
   export default {
     name: 'el-input',
+
+    components: {
+      ElCoreInput
+    },
 
     props: {
       placeholder: String,
@@ -109,35 +76,34 @@
 
 <template>
   <div
-    class="input"
-    :class="{
-      'input--disabled': disabled,
-      'input--active': show
-    }"
+    block="element-input"
     v-clickoutside="handleMouseLeave()">
+
     <span
       v-if="effect === 'special'"
-      :class="{ 'input__placeholder--enter': editing || model }"
-      class="input__placeholder"
+      :class="{ 'is-enter': editing || model }"
+      elem="placeholder"
       @click="editing = true, $els.input.focus()"
       v-text="placeholder">
     </span>
-    <input
-      v-el:input
-      @blur="editing = false"
+    <el-core-input
+      :class="{
+        'is-active': show
+      }"
+      @e-blur="editing = false"
       :type="type || effect"
-      v-model="model"
+      :model.sync="model"
       class="input__original"
       :disabled="disabled"
       :number="effect === 'number'"
       :placeholder="effect === 'special' ? '' : placeholder"
-      @focus="editing = true, show = true">
-
+      @e-focus="editing = true, show = true">
+    </el-core-input>
     <ul
       v-show="show"
-      class="input__dropdown"><li
-        class="input__option"
-        :class="{'input__option--active': item === model}"
+      block="element-dropdown"><li
+        block="element-option"
+        :class="{'is-selected': item === model}"
         v-for="item in suggestion | filterBy model"
         v-text="item"
         @click="model = item, show = false"></li></ul>
