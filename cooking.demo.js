@@ -23,7 +23,7 @@ cooking.set({
     port: 8101,
     publicPath: '/'
   },
-  publicPath: '/el-select/',
+  publicPath: '/el-input/',
   extends: ['vue', 'lint']
 });
 
@@ -38,7 +38,8 @@ cooking.add('vue.loaders.html', 'vue-html-loader!posthtml-loader');
 
 if (process.env.NODE_ENV === 'production') {
   cooking.add('externals', {
-    vue: 'vue'
+    vue: 'vue',
+    vue: 'Vue'
   });
 }
 module.exports = cooking.resolve();

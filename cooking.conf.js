@@ -10,8 +10,7 @@ cooking.set({
   template: false,
   format: 'umd',
   moduleName: 'ElSelect',
-  extractCSS: 'style.css',
-  extends: ['vue', 'lint', 'postcss']
+  extends: ['vue', 'lint']
 });
 
 cooking.add('plugin.UglifyJs', new webpack.optimize.UglifyJsPlugin({
