@@ -6,7 +6,7 @@
 	else if(typeof exports === 'object')
 		exports["ElSelect"] = factory(require("vue-clickoutside"));
 	else
-		root["ElSelect"] = factory(root["vue-clickoutside"]);
+		root["ElSelect"] = factory(root["VueClickoutside"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_10__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
