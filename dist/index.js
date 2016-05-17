@@ -57,9 +57,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	var ElInput = __webpack_require__(6);
+	var ElCoreInput = __webpack_require__(1);
 
 	module.exports = {
 	  ElInput: ElInput,
+	  ElCoreInput: ElCoreInput,
 	  install: function install(Vue) {
 	    Vue.component(ElInput.name, ElInput);
 	  }
@@ -67,29 +69,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
-
-	module.exports = "<div :class=\"{\n    'is-disabled': disabled,\n    'is-readonly': readonly,\n    'is-multiple': multiple\n  }\" class=element-core-input> <template v-if=multiple> <el-core-tag @remove=tags.$remove(tag) v-for=\"tag in tags\" :data=tag> </el-core-tag> </template> <input v-el:input=\"\" v-model=model :type=\"type || 'text'\" :disabled=disabled :readonly=readonly :placeholder=placeholder :number=\"type === 'number'\" @blur=\"$dispatch('e-blur')\" @focus=handleFocus @keydown.down.prevent=\"$dispatch('e-press-down')\" @keydown.up.prevent=\"$dispatch('e-press-up')\" @keyup.enter=\"$dispatch('e-press-enter')\" @keydown.8=handleDelete @keydown.esc=\"$dispatch('e-press-esc')\" class=element-core-input__original> <slot name=icon></slot> </div>";
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	module.exports = "<button class=element-core-tag> <span v-text=data></span> <span v-if=_events.remove @click.stop=\"$dispatch('remove')\" class=element-core-tag__button>&times;</span> </button>";
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = "<div v-clickoutside=handleMouseLeave() class=element-input> <span v-if=\"effect === 'special'\" :class=\"{ 'is-enter': editing || model }\" @click=\"editing = true, $els.input.focus()\" v-text=placeholder class=element-input__placeholder> </span> <el-core-input :class=\"{\n      'is-active': show\n    }\" @e-blur=\"editing = false\" :type=\"type || effect\" :model.sync=model class=input__original :disabled=disabled :number=\"effect === 'number'\" :placeholder=\"effect === 'special' ? '' : placeholder\" @e-focus=\"editing = true, show = true\"> </el-core-input> <ul v-show=show class=element-dropdown><li :class=\"{'is-selected': item === model}\" v-for=\"item in suggestion | filterBy model\" v-text=item @click=\"model = item, show = false\" class=element-option></li></ul> </div>";
-
-/***/ },
-/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	__vue_script__ = __webpack_require__(7)
-	__vue_template__ = __webpack_require__(1)
+	__vue_template__ = __webpack_require__(2)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -98,12 +82,30 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	module.exports = "<div :class=\"{\n    'is-disabled': disabled,\n    'is-readonly': readonly,\n    'is-multiple': multiple\n  }\" class=element-core-input> <template v-if=multiple> <el-core-tag @remove=tags.$remove(tag) v-for=\"tag in tags\" :data=tag> </el-core-tag> </template> <input v-el:input=\"\" v-model=model :type=\"type || 'text'\" :disabled=disabled :readonly=readonly :placeholder=placeholder :number=\"type === 'number'\" @blur=\"$dispatch('e-blur')\" @focus=handleFocus @keydown.down.prevent=\"$dispatch('e-press-down')\" @keydown.up.prevent=\"$dispatch('e-press-up')\" @keyup.enter=\"$dispatch('e-press-enter')\" @keydown.8=handleDelete @keydown.esc=\"$dispatch('e-press-esc')\" class=element-core-input__original> <slot name=icon></slot> </div>";
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = "<button class=element-core-tag> <span v-text=data></span> <span v-if=_events.remove @click.stop=\"$dispatch('remove')\" class=element-core-tag__button>&times;</span> </button>";
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	module.exports = "<div v-clickoutside=handleMouseLeave() class=element-input> <span v-if=\"effect === 'special'\" :class=\"{ 'is-enter': editing || model }\" @click=\"editing = true, $els.input.focus()\" v-text=placeholder class=element-input__placeholder> </span> <el-core-input :class=\"{\n      'is-active': show\n    }\" @e-blur=\"editing = false\" :type=\"type || effect\" :model.sync=model class=input__original :disabled=disabled :number=\"effect === 'number'\" :placeholder=\"effect === 'special' ? '' : placeholder\" @e-focus=\"editing = true, show = true\"> </el-core-input> <ul v-show=show class=element-dropdown><li :class=\"{'is-selected': item === model}\" v-for=\"item in suggestion | filterBy model\" v-text=item @click=\"model = item, show = false\" class=element-option></li></ul> </div>";
+
+/***/ },
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	__vue_script__ = __webpack_require__(8)
-	__vue_template__ = __webpack_require__(2)
+	__vue_template__ = __webpack_require__(3)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -117,7 +119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var __vue_script__, __vue_template__
 	__vue_script__ = __webpack_require__(9)
-	__vue_template__ = __webpack_require__(3)
+	__vue_template__ = __webpack_require__(4)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -203,7 +205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _vueClickoutside2 = _interopRequireDefault(_vueClickoutside);
 
-	var _input = __webpack_require__(4);
+	var _input = __webpack_require__(1);
 
 	var _input2 = _interopRequireDefault(_input);
 
