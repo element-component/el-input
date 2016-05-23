@@ -21,7 +21,7 @@ cooking.set({
   },
   template: false,
   format: 'umd',
-  moduleName: 'ElSelect',
+  moduleName: 'ElInput',
   extends: ['vue', 'lint']
 });
 
